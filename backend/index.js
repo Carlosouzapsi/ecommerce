@@ -122,6 +122,8 @@ app.get("/allproducts", async (req, res) => {
   res.send(products);
 });
 
+// Schema creating for User model
+
 // Starting and listen server on specific Port
 app.listen(port, (error) => {
   if (!error) {
