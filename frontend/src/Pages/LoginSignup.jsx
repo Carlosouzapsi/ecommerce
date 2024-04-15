@@ -14,11 +14,45 @@ const LoginSignup = () => {
   };
 
   const login = async () => {
-    console.log('Login Function Executed');
+    console.log('Login Function Executed', formData);
+    let responseData;
+    await fetch('http://localhost:4000/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/form-data',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    }).then((response) => {
+      return response.json().then((data) => (responseData = data));
+    });
+    if (responseData.success) {
+      localStorage.setItem('auth-token', responseData.token);
+      window.location.replace('/');
+    } else {
+      alert(responseData.errors);
+    }
   };
 
   const signup = async () => {
-    console.log('signup Function Executed');
+    console.log('signup Function Executed', formData);
+    let responseData;
+    await fetch('http://localhost:4000/signup', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/form-data',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    }).then((response) => {
+      return response.json().then((data) => (responseData = data));
+    });
+    if (responseData.success) {
+      localStorage.setItem('auth-token', responseData.token);
+      window.location.replace('/');
+    } else {
+      alert(responseData.errors);
+    }
   };
   return (
     <div className='loginsignup'>
@@ -43,7 +77,13 @@ const LoginSignup = () => {
             type='email'
             placeholder='Email Address'
           />
-          <input type='password' placeholder='Password' />
+          <input
+            name='password'
+            value={formData.password}
+            onChange={changeHandler}
+            type='password'
+            placeholder='Password'
+          />
         </div>
         <button
           onClick={() => {
