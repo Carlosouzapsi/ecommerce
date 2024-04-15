@@ -18,7 +18,7 @@ module.exports = {
     'cypress', // Adicionando plugin Cypress
   ],
   rules: {
-    'react/prop-types': 1, // Desativando verificação de PropTypes (opcional)
+    'react/prop-types': 0, // Desativando verificação de PropTypes (opcional)
     'no-unused-vars': 0, // Desativando aviso de variáveis não utilizadas (opcional)
     'react/react-in-jsx-scope': 0,
   },

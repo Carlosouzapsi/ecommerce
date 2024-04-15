@@ -200,8 +200,10 @@ app.post("/login", async (req, res) => {
         token,
       });
     } else {
-      res.json({ success: false, errors: "Wrong Password" });
+      res.status(401).json({ success: false, errors: "Wrong Password" });
     }
+  } else {
+    res.status(401).json({ success: false, errors: "Wrong email Id" });
   }
 });
 
